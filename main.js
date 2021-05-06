@@ -24,7 +24,7 @@ var timer = 0;
 var secondiTimer = setInterval(function () {
     timer++;
     console.log(timer);
-    if (timer === 10) {
+    if (timer === 30) {
         clearInterval(secondiTimer);
         //Dopo 30 secondi l'utente deve inserire, uno alla volta, i numeri che ha visto precedentemente, tramite il prompt().
         var arrayUtente = [];
