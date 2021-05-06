@@ -9,9 +9,15 @@ function randomNumber(min, max) {
 }
 //numero massimo del numero casuale stabilito dall'utente
 var numeroMax = Number(prompt('inserisci il numero massimo casuale'));
-console.log(numeroMax);
 // creo array con 5 numeri casuali e li stampo in un allert()
-var arrayNumeri = [randomNumber(1, 9), randomNumber(1, 9), randomNumber(1, 9), randomNumber(1, 9), randomNumber(1, 9)];
+var arrayNumeri = [];
+var numero;
+while (arrayNumeri.length < 5) {
+    numero = randomNumber(1, numeroMax);
+    if (!arrayNumeri.includes(numero)) {
+        arrayNumeri.push(numero);
+    } 
+}
 alert('Ricorda questi numeri: ' + arrayNumeri);
 //Da li parte un timer di 30 secondi.
 var timer = 0;
@@ -29,15 +35,18 @@ var secondiTimer = setInterval(function () {
         }
         //creo array e pusho i numeri scelti dall'utente
         
-        console.log(arrayUtente);
-        console.log(arrayNumeri);
-        
-        console.log(intersect(arrayUtente, arrayNumeri));
+        console.log('numeri utente ' + arrayUtente);
+        console.log('numeri da indovinare ' + arrayNumeri);
+
+        //Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati. 
+        var numeriCorretti = intersect(arrayUtente, arrayNumeri);
+        console.log('hai indovintao ' + numeriCorretti.length + ' numeri');
+        console.log('i numeri che hai indovinato sono: ' + numeriCorretti)
     }
 
 }, 1000);
 
-//Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati. */
+
 function intersect(a, b) {
     return a.filter(Set.prototype.has, new Set(b));
 }
